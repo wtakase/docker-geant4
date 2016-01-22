@@ -1,7 +1,7 @@
 FROM wtakase/geant4-base
 MAINTAINER wtakase <wataru.takase@kek.jp>
 
-ENV GEANT4_VERSION 10.01.p02
+ENV GEANT4_VERSION 10.00.p04
 RUN mkdir -p /opt/geant4/{src,build} && \
     curl -o /opt/geant4/geant4.${GEANT4_VERSION}.tar.gz \
             http://geant4.cern.ch/support/source/geant4.${GEANT4_VERSION}.tar.gz && \
