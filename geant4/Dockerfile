@@ -1,4 +1,4 @@
-FROM wtakase/geant4-base
+FROM wtakase/geant4-base:centos7
 MAINTAINER wtakase <wataru.takase@kek.jp>
 
 ENV GEANT4_VERSION 10.01.p02
