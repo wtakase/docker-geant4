@@ -10,7 +10,7 @@ This product includes software developed by Members of the Geant4 Collaboration 
 docker run --rm --privileged multiarch/qemu-user-static:register
 git clone https://github.com/wtakase/docker-geant4
 cd docker-geant4
-git checkout release-10.5
+git checkout release-10.5-arm
 docker build -f armhf-bionic/Dockerfile -t wtakase/geant4:10.05-armhf .
 docker build -f arm64-bionic/Dockerfile -t wtakase/geant4:10.05-arm64 .
 ```
