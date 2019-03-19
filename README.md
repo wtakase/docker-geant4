@@ -35,6 +35,7 @@ docker run --rm -it -v "/path/to/download/geant4/data:/opt/geant4/data:ro" wtaka
 ```
 git clone --branch v10.5.0 https://github.com/Geant4/geant4.git
 docker run --rm -it -v "/path/to/download/geant4/data:/opt/geant4/data:ro" -v "`pwd`/geant4/examples:/opt/geant4/examples:ro" wtakase/geant4:10.05-amd64 bash -c 'cmake /opt/geant4/examples/basic/B1 && make && ./exampleB1 run1.mac'
+docker run --rm -it -v "/path/to/download/geant4/data:/opt/geant4/data:ro" -v "`pwd`/geant4/examples:/opt/geant4/examples:ro" -v "/tmp/output:/tmp/output" wtakase/geant4:10.05-amd64 bash -c 'cmake /opt/geant4/examples/extended/medical/electronScattering2 && make && sed -i "\/run\/initialize/i /run/numberOfThreads 8" macros/Opt0/Al1_13MeV.mac && ./electronScattering2 macros/Opt0/Al1_13MeV.mac 1 /tmp/output/Opt0_Al1_13MeV_1.csv'
 ```
 
 ## Build images on any CPU architecture machine
