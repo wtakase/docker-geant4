@@ -1,9 +1,9 @@
-FROM alpine:3.9 as builder
+FROM multiarch/alpine:amd64-v3.9 as builder
 MAINTAINER wtakase <wataru.takase@kek.jp>
 
 ENV G4_VERSION 10.05
 
-RUN apk --no-cache add cmake curl expat-dev g++ gcc make && \
+RUN apk --no-cache add cmake curl g++ gcc make && \
     mkdir -p /opt/geant4/src && \
     mkdir -p /opt/geant4/build && \
     mkdir -p /opt/geant4/install && \
@@ -16,14 +16,17 @@ RUN apk --no-cache add cmake curl expat-dev g++ gcc make && \
           -DGEANT4_INSTALL_DATADIR=/opt/geant4/data \
           -DGEANT4_BUILD_MULTITHREADED=ON \
           -DGEANT4_INSTALL_EXAMPLES=OFF \
+          -DGEANT4_USE_SYSTEM_EXPAT=OFF \
+          -DBUILD_STATIC_LIBS=ON \
+          -DBUILD_SHARED_LIBS=OFF \
           ../src/geant4.${G4_VERSION} && \
     make -j`nproc` && \
     make install
 
 
-FROM alpine:3.9
+FROM multiarch/alpine:amd64-v3.9
 
-RUN apk --no-cache add bash cmake expat-dev g++ gcc make && \
+RUN apk --no-cache add bash cmake g++ gcc make && \
     mkdir -p /opt/geant4/data
 COPY --from=builder /opt/geant4/install /opt/geant4/install
 COPY entry-point.sh /entry-point.sh
