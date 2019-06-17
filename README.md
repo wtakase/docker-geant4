@@ -30,7 +30,6 @@ docker run --rm -it -v "/path/to/download/geant4/data:/opt/geant4/data:ro" wtaka
 ## Execute a Geant4 example
 ```
 git clone --branch v10.5.0 https://github.com/Geant4/geant4.git
-
 docker run --rm -it -v "/path/to/download/geant4/data:/opt/geant4/data:ro" -v "`pwd`/geant4/examples:/opt/geant4/examples:ro" wtakase/geant4:10.05-qt-amd64-bionic bash -c 'cmake /opt/geant4/examples/basic/B1 && make && ./exampleB1 run1.mac'
 ```
 
