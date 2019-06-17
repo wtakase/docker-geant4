@@ -4,7 +4,7 @@ MAINTAINER wtakase <wataru.takase@kek.jp>
 ENV G4_VERSION 10.05
 
 RUN apt-get update -y && \
-    apt-get install -y cmake curl g++ libexpat1-dev
+    apt-get install -y cmake curl qtdeclarative5-dev g++ libexpat1-dev
 RUN mkdir -p /opt/geant4/src && \
     mkdir -p /opt/geant4/build && \
     mkdir -p /opt/geant4/install && \
@@ -17,6 +17,7 @@ RUN mkdir -p /opt/geant4/src && \
           -DGEANT4_INSTALL_DATADIR=/opt/geant4/data \
           -DGEANT4_BUILD_MULTITHREADED=ON \
           -DGEANT4_INSTALL_EXAMPLES=OFF \
+          -DGEANT4_USE_QT=ON \
           ../src/geant4.${G4_VERSION} && \
     make -j`nproc` && \
     make install
@@ -25,7 +26,7 @@ RUN mkdir -p /opt/geant4/src && \
 FROM ubuntu:bionic
 
 RUN apt-get update -y && \
-    apt-get install -y cmake g++ libexpat1-dev && \
+    apt-get install -y cmake qtdeclarative5-dev g++ libexpat1-dev && \
     apt-get autoremove -y && \
     apt-get clean -y && \
     rm -rf /var/cache/apt/archives/* && \
